@@ -1,0 +1,91 @@
+.horizontal-line{
+    width: 100%;
+    border-bottom: 1px dashed #a09c9c;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer{
+    color: #490a11;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #f0e3ce;
+}
+
+.footer-title{
+    font: 24px "Roboto";
+    margin-bottom: 30px;
+}
+
+.footer-block-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+}
+.footer-block-container .block-left{
+    margin: 0 31px;
+}
+
+
+.footer-block-container .block-left .note{
+    width: 70%;
+    font: 15px sans-serif;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.form-control{
+    font: 14px sans-serif;
+    border: none;
+    margin-top: 15px;
+    padding: 10px 16px;
+    font-style: italic;
+    
+}
+
+.footer-block-container .block-right{
+    margin-right: 31px;
+   
+}
+
+.footer-block-container .form-contact-submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-block-container button{
+    font-size: 14px;
+    color: #fff;
+    background-color: #5b1a1f;
+    padding: 7px 35px;
+}
+
+.footer-block-container .block-right p{
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.block-right .policy{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.block-right .policy a{
+    margin-top: 10px;
+}
+
+.ifram-facebook{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.iframe-google{
+    margin-top: 60px;
+}
