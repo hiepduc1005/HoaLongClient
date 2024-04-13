@@ -1,4 +1,5 @@
 
+
 .homepage-container{
     color: #490a11;
     display: flex;
@@ -59,6 +60,7 @@
 }
 
 .box-product .item img{
+    height: 350px;
     width: 100%;
 }
 
@@ -86,8 +88,13 @@
     font: 14px sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 45%;
+    grid-gap: 20%;
     margin: 15px 0;
+}
+
+.item .product-name{
+    color: #5b1a1f;
+    text-decoration: none;
 }
 
 p.product-description {
@@ -98,7 +105,9 @@ p.product-description {
 }
 
 .action .product-detail{
+    color: #5b1a1f;
     line-height: 30px;
+    text-decoration: none;
 }
 
 .list-item .action .order{

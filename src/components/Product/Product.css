@@ -1,0 +1,12 @@
+.product-container{
+    color: #490a11;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0); 
+    background-color: #f0e3ce;
+
+}

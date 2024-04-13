@@ -1,0 +1,25 @@
+
+.table-manage{
+
+}
+
+.product-manage .title{
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.table-products{
+    max-height: 500px;
+}
+
+img{
+    width: 250px;
+    object-fit: cover;
+}
+
+.file-btn{
+    width: 15%;
+    cursor: pointer;
+}
+

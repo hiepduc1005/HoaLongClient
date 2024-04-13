@@ -2,7 +2,7 @@ import './Footer.css'
 
 const Fotter = (props) => {
     return (
-        <div className="footer">
+        <div className="footer"  id='contact'>
              <div className="horizontal-line"></div>
             <div className="footer-title">
             LIÊN HỆ VỚI CHÚNG TÔI
@@ -20,7 +20,7 @@ const Fotter = (props) => {
                     <input placeholder="Số điện thoại" required className="form-control" type="text"></input>
                 </div>
                 <div className="form-group">
-                    <textarea rows={8} cols={80} placeholder="Nội dung liên hệ" className="form-control"></textarea>
+                    <textarea  rows={8} cols={80} placeholder="Nội dung liên hệ" className="form-control"></textarea>
                 </div>
                 <div className="form-contact-submit">
                     <button type="submit" >Liên hệ</button>
@@ -42,7 +42,7 @@ const Fotter = (props) => {
             </div>
 
             <div className="block-right">
-                <h2>Nem chua Hồng Chiến</h2>
+                <h2>Nem chua Hoa Long</h2>
                 <p>Giấy chứng nhận Đăng ký Kinh doanh số 01D8020323 do Phòng tài chính - Kế hoạch Quận Hai Bà Trưng cấp ngày 21/12/2011</p>
                 <p>Địa chỉ : 11 Lê Đại Hành, Hai Bà Trưng, Hà Nội</p>
                 <p>Điện thoại hotline: <b>1234567890</b></p>

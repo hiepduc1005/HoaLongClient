@@ -1,8 +1,24 @@
 import imgHeader from "../../assets/img/rIEIMS4jPRFa3hkfYoyS8OL5j3kYrXVR6d9fHx93.jpeg"
 import './HomePage.css'
 import nemChua from "../../assets/img/nemchua.jpeg"
+import { getAllProduct } from "../../services/ProductService"
+import { useEffect, useState } from "react"
 
 const HomePage = (props)=>{
+
+    const [listProducts , setListProducts] = useState([]);
+
+    useEffect(() =>{
+        fetchProducts()
+       
+    },[])
+
+    const fetchProducts = async () =>{
+        let res = await getAllProduct();
+        console.log(res);
+        setListProducts(res.data.DT.body)
+       
+    }
     return(
         <div className="homepage-container">
            <div className="image-header">
@@ -21,7 +37,37 @@ const HomePage = (props)=>{
                 </div>
 
             <div className="list-item">
-                <div className="item">
+                {listProducts && listProducts.map((item , index) =>{
+                        return (
+                              <div className="item" key={`list-product-${index}`}>
+                    <div className="image-product">
+                        <img src={`data:image/png;base64,${item.imgData}`}></img>
+                    </div>
+                   
+                    <a className="product-name">{item.name}</a>
+                    <span className="price">{item.price}</span>
+                    <p className="product-description">{item.description}</p>
+                    <div className="action">
+                        <a className="product-detail">Thông tin sản phẩm</a>
+                        <button className="order">Đặt hàng</button>
+                    </div>
+                </div>
+                        )
+                    })}
+              
+                {/* <div className="item">
+                    <div className="image-product">
+                        <img src={nemChua}></img>
+                    </div>
+                    <a className="product-name">Nem Chua Nướng</a>
+                    <span className="price">37,000 VNĐ/10 cái</span>
+                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
+                    <div className="action">
+                        <a className="product-detail">Thông tin sản phẩm</a>
+                        <button className="order">Đặt hàng</button>
+                    </div>
+                </div> */}
+                {/* <div className="item">
                     <div className="image-product">
                         <img src={nemChua}></img>
                     </div>
@@ -44,31 +90,7 @@ const HomePage = (props)=>{
                         <a className="product-detail">Thông tin sản phẩm</a>
                         <button className="order">Đặt hàng</button>
                     </div>
-                </div>
-                <div className="item">
-                    <div className="image-product">
-                        <img src={nemChua}></img>
-                    </div>
-                    <a className="product-name">Nem Chua Nướng</a>
-                    <span className="price">37,000 VNĐ/10 cái</span>
-                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
-                    <div className="action">
-                        <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
-                    </div>
-                </div>
-                <div className="item">
-                    <div className="image-product">
-                        <img src={nemChua}></img>
-                    </div>
-                    <a className="product-name">Nem Chua Nướng</a>
-                    <span className="price">37,000 VNĐ/10 cái</span>
-                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
-                    <div className="action">
-                        <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
-                    </div>
-                </div>
+                </div> */}
                 
             </div>
            </div>
