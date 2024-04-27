@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ProductsManage.css'
 import ReactPaginate from 'react-paginate';
 import { useOutletContext } from "react-router-dom";
-import { createProduct, getProductPaginate } from '../../../services/ProductService';
+import { createProduct, getAllProduct, getNumberOfPageByProducts, getProductPaginate } from '../../../services/ProductService';
 import { useNavigate } from 'react-router-dom';
+import ModalUpdateProduct from '../ModalUpdateProduct';
+import ModalDeleteProduct from '../ModalDeleteProduct';
 
 
 const ProductsManage = (props) => {
@@ -14,6 +16,13 @@ const ProductsManage = (props) => {
     const [productName , setProductName] = useState('')
     const [productDescription , setProductDescription] = useState('')
     const [productPrice , setProductPrice] = useState()
+
+    const [numberOfPage , setNumberOfPage] = useState(1)
+    const [productsList , setProductsList] = useState([])
+    const [currentPage , setCurrentPage] = useState(1)
+
+    const [productUpdate , setProductUpdate] = useState()
+    const [productDelete , setProductDelete] = useState()
 
     const accessToken = useOutletContext();
     const navigate = useNavigate();
@@ -26,10 +35,27 @@ const ProductsManage = (props) => {
         }
     }
 
+    useEffect(() => {
+        fetchProduct()
+    },[currentPage])
+
+    const fetchProduct = async () => {
+        const pageNum = await getNumberOfPageByProducts(limit);
+        setNumberOfPage(pageNum.data)
+
+        const products = await getProductPaginate(currentPage , limit)
+        setProductsList(products.data)
+    }
+
     const handleSaveProduct = async () => {
         if(!accessToken){
             navigate('/admin')
             return;
+        }
+
+        if(!productName || !productPrice || !productDescription || !imgData){
+            alert("Tạo sản phẩm không thành công , hãy nhập đầy đủ thông tin")
+            return
         }
         const res = await createProduct(productName,productPrice,productDescription,imgData,accessToken);
         if(!res.data && res.status !== 200){
@@ -37,16 +63,20 @@ const ProductsManage = (props) => {
         }
         else {
             alert('Create product success!')
+            fetchProduct();
             setProductName('')
             setProductDescription('')
             setProductPrice()
             setImgData('')
+
+            setCurrentPage(1)
         }
     }
 
-    const getProductByPageAndLimit = async () =>{
-        
-    }
+    const handlePageClick = (event) =>{
+       setCurrentPage(+event.selected+1)
+    } 
+
 
     return (
         <div className="product-manage">
@@ -118,30 +148,48 @@ const ProductsManage = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {/* {listQuiz && listQuiz.map((item, index) => { */}
-                    {/* return ( */}
-                        <tr>
-                            <td>id</td>
-                            <td>name</td>
-                            <td>desc</td>
-                            <td>Price</td>
+                  {productsList && productsList.map((item , index) => {
+                    return (
+                         <tr>
+                            <td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td>{item.description}</td>
+                            <td>{item.price}</td>
                             <td style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-                                <button className="btn btn-warning mr-5">Edit</button>
-                                <button className="btn btn-danger">Delete</button>
+                            <button 
+                                type="button" 
+                                class="btn btn-warning" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#staticBackdropUpdate"
+                                onClick={() => setProductUpdate(item)}
+                            >
+                                Edit
+                            </button>   
+
+                            <button 
+                                type="button"
+                                class="btn btn-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"
+                                onClick={() => setProductDelete(item)}
+                            >
+                                Delete
+                            </button> 
                             </td>
-                        </tr>
-                {/* })} */}
-
-
+                        </tr> 
+                     )
+                  })}  
+                        
+            
             </tbody>
         </table>
         <div className='user-pagination'>
                 <ReactPaginate
                     nextLabel="next >"
-                    // onPageChange={handlePageClick}
+                    onPageChange={handlePageClick}
                     pageRangeDisplayed={3}
                     marginPagesDisplayed={3}
-                    pageCount={10}
+                    pageCount={numberOfPage}
                     previousLabel="< previous"
                     pageClassName="page-item"
                     pageLinkClassName="page-link"
@@ -158,6 +206,15 @@ const ProductsManage = (props) => {
                     // forcePage={props.currentPage - 1}
                 />
             </div>
+            <ModalUpdateProduct
+                productUpdate={productUpdate}
+                setCurrentPage={setCurrentPage}
+            />
+
+            <ModalDeleteProduct
+                productDelete={productDelete}
+                setCurrentPage={setCurrentPage}
+            />
             </div>
         </div>
     )

@@ -3,10 +3,13 @@ import './HomePage.css'
 import nemChua from "../../assets/img/nemchua.jpeg"
 import { getAllProduct } from "../../services/ProductService"
 import { useEffect, useState } from "react"
+import CartModal from "../Cart/CartModal"
 
 const HomePage = (props)=>{
 
     const [listProducts , setListProducts] = useState([]);
+    const [show , setShow]  = useState(false)
+    const [productCart , setProductCart] = useState({})
 
     useEffect(() =>{
         fetchProducts()
@@ -16,9 +19,15 @@ const HomePage = (props)=>{
     const fetchProducts = async () =>{
         let res = await getAllProduct();
         console.log(res);
-        setListProducts(res.data.DT.body)
+        setListProducts(res.data)
        
     }
+
+    const handleClickBy = (item) =>{
+        setShow(true)
+        setProductCart(item)
+    }
+
     return(
         <div className="homepage-container">
            <div className="image-header">
@@ -41,7 +50,7 @@ const HomePage = (props)=>{
                         return (
                               <div className="item" key={`list-product-${index}`}>
                     <div className="image-product">
-                        <img src={`data:image/png;base64,${item.imgData}`}></img>
+                        <img className="img-thumbnail" src={`data:image/png;base64,${item.imgData}`}></img>
                     </div>
                    
                     <a className="product-name">{item.name}</a>
@@ -49,53 +58,23 @@ const HomePage = (props)=>{
                     <p className="product-description">{item.description}</p>
                     <div className="action">
                         <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
+                        <button className="order" onClick={() => handleClickBy(item)}>Đặt hàng</button>
                     </div>
                 </div>
                         )
                     })}
               
-                {/* <div className="item">
-                    <div className="image-product">
-                        <img src={nemChua}></img>
-                    </div>
-                    <a className="product-name">Nem Chua Nướng</a>
-                    <span className="price">37,000 VNĐ/10 cái</span>
-                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
-                    <div className="action">
-                        <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
-                    </div>
-                </div> */}
-                {/* <div className="item">
-                    <div className="image-product">
-                        <img src={nemChua}></img>
-                    </div>
-                    <a className="product-name">Nem Chua Nướng</a>
-                    <span className="price">37,000 VNĐ/10 cái</span>
-                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
-                    <div className="action">
-                        <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
-                    </div>
-                </div>
-                <div className="item">
-                    <div className="image-product">
-                        <img src={nemChua}></img>
-                    </div>
-                    <a className="product-name">Nem Chua Nướng</a>
-                    <span className="price">37,000 VNĐ/10 cái</span>
-                    <p className="product-description">Khi đến với Hà Nội thì bạn có thể thưởng thức vô vàn những món nướng ngon. Nào là khoai, ngô, sắn… tới cánh gà nướng, vịt nướng, thịt xiên nướng, nhưng có một món rất được ưa chuộng nhất là đối với các bạn trẻ. Chắc rằng nhiều bạn đã biết chúng tôi đang muốn nói đến</p>
-                    <div className="action">
-                        <a className="product-detail">Thông tin sản phẩm</a>
-                        <button className="order">Đặt hàng</button>
-                    </div>
-                </div> */}
-                
+               
             </div>
            </div>
 
            <div></div>
+
+           <CartModal
+           show={show}
+           setShow={setShow}
+           productCart={productCart}
+           ></CartModal>
         </div>
     )
 }

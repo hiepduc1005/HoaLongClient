@@ -1,6 +1,45 @@
+import { useState } from 'react'
 import './Footer.css'
+import { createContact } from '../../services/ContactService'
 
 const Fotter = (props) => {
+
+    const [name , setName ] = useState()
+    const [phoneNum , setPhoneNum] = useState()
+    const [contactContent , setContactContent] = useState()
+
+    const isVietnamesePhoneNumber = (number) => {
+        return /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/.test(number);
+    }
+
+    const handleSubmitContact = async () =>{
+
+        if (!name || !phoneNum || !contactContent) {
+            alert("Vui lòng điền đầy đủ thông tin!")
+            return; 
+        }
+
+        if(!isVietnamesePhoneNumber(phoneNum)){
+            alert("Vui lòng điền đúng số điện thoại")
+            return;
+        }
+
+        const res = await createContact(name , phoneNum , contactContent);
+        console.log(res)
+        if(res && res.data){
+            alert("Contact success!")
+            setName("")
+            setPhoneNum("")
+            setContactContent("")
+        }
+        else{
+            alert("Contact failed!")
+            setName("")
+            setPhoneNum("")
+            setContactContent("")
+        }
+    }
+
     return (
         <div className="footer"  id='contact'>
              <div className="horizontal-line"></div>
@@ -14,16 +53,35 @@ const Fotter = (props) => {
                      chúng tôi sẽ trả lời bạn trong thời gian sớm nhất.
                 </p>
                 <div className="form-group">
-                    <input placeholder="Họ tên" required className="form-control" type="text"></input>
+                    <input 
+                        placeholder="Họ tên"
+                        required className="form-control" 
+                        type="text" 
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        ></input>
                 </div>
                 <div className="form-group">
-                    <input placeholder="Số điện thoại" required className="form-control" type="text"></input>
+                    <input
+                        placeholder="Số điện thoại" 
+                        required className="form-control" 
+                        type="text"
+                        value={phoneNum}
+                        onChange={(event) => setPhoneNum(event.target.value)}
+                        ></input>
                 </div>
                 <div className="form-group">
-                    <textarea  rows={8} cols={80} placeholder="Nội dung liên hệ" className="form-control"></textarea>
+                    <textarea 
+                        rows={8} 
+                        cols={80} 
+                        placeholder="Nội dung liên hệ" 
+                        className="form-control"
+                        value={contactContent}
+                        onChange={(event) => setContactContent(event.target.value)}
+                        ></textarea>
                 </div>
                 <div className="form-contact-submit">
-                    <button type="submit" >Liên hệ</button>
+                    <button type="submit" onClick={() => handleSubmitContact()} >Liên hệ</button>
                 </div>
                 
                 <div className='ifram-facebook'>

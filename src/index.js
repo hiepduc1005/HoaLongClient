@@ -13,6 +13,7 @@ import ProductsManage from './components/Admin/Product/ProductsManage';
 import OrderManage from './components/Admin/OrdersManage/OrdersManage';
 import History from './components/Admin/History/History';
 import AdminLogin from './components/Admin/Login/AdminLogin';
+import Cart from './components/Cart/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -29,7 +30,8 @@ root.render(
     <Routes>
       <Route path='/' element = {<App/>}>
         <Route index element = {<HomePage/>}></Route>
-        <Route path='/product' element = {<Product/>}></Route> 
+        <Route path='/product' element = {<Product/>}></Route>
+        <Route path='/cart' element = {<Cart/>}></Route>
       </Route>
       
       

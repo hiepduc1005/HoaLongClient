@@ -16,7 +16,7 @@ textarea{
     justify-content: center;
     align-items: center;
     margin: auto;
-    max-width: 1200px;
+    width: 80%;
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #f0e3ce;
 }

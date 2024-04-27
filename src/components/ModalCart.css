@@ -1,0 +1,9 @@
+.modal {
+    /* display: none; */
+    position: absolute;
+    top: 30px; /* Điều chỉnh vị trí hiển thị modal */
+    left: 0;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+}

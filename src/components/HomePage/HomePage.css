@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    max-width: 1200px;
+    width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0); 
     background-color: #f0e3ce;
 
@@ -60,8 +60,8 @@
 }
 
 .box-product .item img{
-    height: 350px;
     width: 100%;
+    object-fit: cover;
 }
 
 .box-product .item .image-product:hover{
@@ -74,14 +74,17 @@
 .list-item .item .product-name{
     font: 24px "Roboto";
     cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
 }
 
 
 .list-item .item .price{
-    color: red;
+    color: #cd0b20;
     font-style: italic;
-    font-size: 13px;
+    font-size: 14px;
     margin: 5px 0;
+    font-weight: bold;
 }
 
 .list-item .item .action{

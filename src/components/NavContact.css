@@ -1,0 +1,49 @@
+.nav-contact{
+    position: fixed;
+    bottom: 15%;
+    border-radius: 5px;
+    background-color: aliceblue;
+    left: 13px;
+    width: 60px;
+}
+
+.zalo-contact , .messenger-contact , .phone-contact{
+    display: flex;
+    justify-content: center;
+    margin: 10px 15px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.zalo-contact i {
+    display: block;
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    background-image: url("../assets/img/Icon_of_Zalo.svg.png");
+    background-size: contain;
+}
+
+.messenger-contact i{
+    display: block;
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    background-image: url("../assets/img/icons8-facebook-messenger-96.png");
+    background-size: contain;
+}
+
+.messenger-contact a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.phone-contact i {
+    display: block;
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    background-image: url("../assets/img/icons8-phone-48.png");
+    background-size: contain;
+}
+
+
