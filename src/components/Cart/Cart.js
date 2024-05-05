@@ -3,8 +3,10 @@ import './Cart.css'
 import { deleteAllProductInCart, deleteProductInCart, getProductsInCart, getTotalPriceInCart } from '../../services/CartService'
 import { getProductById } from '../../services/ProductService'
 import { createPurchase } from '../../services/PurchaseService'
+import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
+    const navigate = useNavigate();
 
     const [productId , setProductId] = useState()
     const [listProduct , setListProduct] = useState()
@@ -80,6 +82,7 @@ const Cart = (props) => {
         const price = await getTotalPriceInCart();
 
         if(price && price.data){
+            console.log(price)
             setTotalPrice(price.data.totalPrice)
         }
 
@@ -99,6 +102,8 @@ const Cart = (props) => {
         setQuantities(quantities)
         setListProduct(productList);
 
+       
+
     }
     
 
@@ -111,8 +116,8 @@ const Cart = (props) => {
         <div className="cart-container">
             <nav style={{ '--bs-breadcrumb-divider': "'>'" }}  className='breadcrumb-cart' aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                <li class="breadcrumb-item" onClick={() => navigate("/")} ><a>Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
              </ol>
            </nav>
            
@@ -120,7 +125,7 @@ const Cart = (props) => {
                 <h3 style={{textAlign: 'center' , paddingBottom:'20px'}}>Giỏ Hàng</h3>
                 <table className='table'>
                     <thead>
-                        <tr>
+                        <tr className='table-head'>
                             <td  style={{width : '60px'}}>STT</td>
                             <td>Sản Phẩm</td>
                             <td style={{width : '160px'}}>Giá</td>
@@ -134,10 +139,13 @@ const Cart = (props) => {
                         {listProduct && listProduct.map((item , index) => {
                             return (
                             <tr>
-                                <td>1</td>
+                                <td>{index + 1}</td>
                                 <td>
                                     <div className='product-cartitem'>
-                                        <img src='' className='img-thumbnail'></img>
+                                        <div className='product-image'>
+                                            <img src={`data:image/png;base64,${item.imgData}`} className='img-thumbnail'></img>
+                                        </div> 
+                                       
                                         <span>{item.name}</span>
                                     </div>
                                 </td>
@@ -149,8 +157,8 @@ const Cart = (props) => {
                                     <i className='ti-plus'></i>
                                 </td>
                                 <td>{handleFormatCurrency(item.price * quantities[index])}</td>
-                                <td>
-                                    <i className='ti-trash' onClick={() => handleDeleteProductInCart(item)} style={{padding : '10px'}}></i>
+                                <td className='td-icon'>
+                                    <i className='ti-trash' onClick={() => handleDeleteProductInCart(item)} style={{paddingRight : '10px' , lineHeight : "80px"}}></i>
                                 </td>
                             </tr>
                             )

@@ -45,8 +45,7 @@
 }
 
 .box-product .list-item{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+   display: none;
 }
 
 .box-product .list-item .item{
@@ -56,12 +55,13 @@
 }
 
 .box-product .item .image-product{
-
+    height: 280px;
 }
 
 .box-product .item img{
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
 }
 
 .box-product .item .image-product:hover{
@@ -101,10 +101,17 @@
 }
 
 p.product-description {
-    width:100%;
-    height: 131px;    
+    width: 100%;
+    white-space: normal;
+    vertical-align: top;
+    display: inline-block;
+    line-break: anywhere;
     text-align: justify;
-    overflow: hidden;
+    height: 100px;
+}
+
+.product-description{
+
 }
 
 .action .product-detail{

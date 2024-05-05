@@ -46,13 +46,15 @@ const ModalUpdateProduct = (props) => {
         }
         let res = await updateProduct(productId,productName,productPrice,productDescription,imgData,accessToken)
 
-        if(res && res.data && res.data.DT.body){
+        if(res && res.data){
             props.setCurrentPage(1)
            
         }
 
         
     }
+
+  
 
 
     return (

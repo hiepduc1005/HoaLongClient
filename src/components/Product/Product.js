@@ -30,7 +30,7 @@ const Product = (props) => {
 
     return (
         <div className="product-container">
-            <nav aria-label="breadcrumb" className='nav-breadcrumb'>
+            <nav aria-label="breadcrumb" style={{ '--bs-breadcrumb-divider': "'>'" }} className='nav-breadcrumb'>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a onClick={() => navigate("/")}>Trang chủ</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
