@@ -11,7 +11,7 @@ const getProductById = (productId) => {
 const createProduct = (name  , price , description , imgData , accessToken)=>{
     const data = {
         name : name,
-        category : null,
+        price : price,
         description : description,
         imgData : imgData
     }
@@ -40,7 +40,6 @@ const updateProduct = (id , name , price , description , imgData , accessToken) 
     const data = {
         id : id ,
         name : name,
-        category : null,
         price : price ,
         description : description,
         imgData : imgData
