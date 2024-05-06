@@ -18,7 +18,6 @@ const HomePage = (props)=>{
 
     const fetchProducts = async () =>{
         let res = await getAllProduct();
-        console.log(res);
         setListProducts(res.data)
        
     }

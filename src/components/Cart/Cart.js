@@ -82,7 +82,6 @@ const Cart = (props) => {
         const price = await getTotalPriceInCart();
 
         if(price && price.data){
-            console.log(price)
             setTotalPrice(price.data.totalPrice)
         }
 
@@ -96,7 +95,9 @@ const Cart = (props) => {
         const productList = await Promise.all(data.map(async (value , index) => {
             const res = await getProductById(+value);
             quantities.push(products.data[value]);
-            return res.data;
+            if(res.data){
+                return res.data;
+            }
         }));
     
         setQuantities(quantities)
