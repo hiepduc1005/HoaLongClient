@@ -90,12 +90,14 @@ const Cart = (props) => {
         }
 
         const data = Object.keys(products.data);
+        console.log(data)
         let quantities = [];
     
         const productList = await Promise.all(data.map(async (value , index) => {
             const res = await getProductById(+value);
             quantities.push(products.data[value]);
             if(res.data){
+                console.log(res.data)
                 return res.data;
             }
         }));
