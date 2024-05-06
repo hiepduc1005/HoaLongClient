@@ -48,7 +48,7 @@ i {
     padding: 8px;
 }
 
-tbody td {
+.listitem-table tbody td {
     line-height: 80px !important;
 }
 

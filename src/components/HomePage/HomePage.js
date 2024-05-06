@@ -28,6 +28,12 @@ const HomePage = (props)=>{
         setProductCart(item)
     }
 
+    const handleFormatCurrency = (amount) =>{
+        let config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9 };
+        let formatted = new Intl.NumberFormat('it-IT', config).format(amount);
+        return formatted
+    }
+
     return(
         <div className="homepage-container">
            <div className="image-header">
@@ -54,7 +60,7 @@ const HomePage = (props)=>{
                     </div>
                    
                     <a className="product-name">{item.name}</a>
-                    <span className="price">{item.price}</span>
+                    <span className="price">{handleFormatCurrency(item.price)}</span>
                     <p className="product-description">{item.description}</p>
                     <div className="action">
                         <a className="product-detail">Thông tin sản phẩm</a>
