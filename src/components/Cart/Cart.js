@@ -64,13 +64,16 @@ const Cart = (props) => {
             productQuantity
         );
         alert("Đơn hàng của bạn đã được gửi")
-        const res = await deleteAllProductInCart();
-        setUserName("")
-        setPhoneNum("")
-        setAddress("")
-        setCustomerRequest("")
-        setTotalPrice(0)
+        if(purchase && purchase.data){
+            setUserName("")
+            setPhoneNum("")
+            setAddress("")
+            setCustomerRequest("")
+            setTotalPrice(0)
+        }
+        
         if(res && res.data){
+           const res = await deleteAllProductInCart();
            fetchProducts()
         }
        
@@ -141,7 +144,7 @@ const Cart = (props) => {
                         
                         {listProduct && listProduct.map((item , index) => {
                             return (
-                            <tr>
+                            <tr key={`cartProduct${index}`}>
                                 <td>{index + 1}</td>
                                 <td>
                                     <div className='product-cartitem'>
