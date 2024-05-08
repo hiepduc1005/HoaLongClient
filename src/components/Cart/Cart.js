@@ -71,9 +71,9 @@ const Cart = (props) => {
             setCustomerRequest("")
             setTotalPrice(0)
         }
-        
+        const res = await deleteAllProductInCart();
         if(res && res.data){
-           const res = await deleteAllProductInCart();
+          
            fetchProducts()
         }
        
