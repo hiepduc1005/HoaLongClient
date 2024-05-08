@@ -64,6 +64,10 @@ const Cart = (props) => {
             productQuantity
         );
         alert("Đơn hàng của bạn đã được gửi")
+        const res = await deleteAllProductInCart();
+        if(res && res.data){
+           fetchProducts()
+        }
         if(purchase && purchase.data){
             setUserName("")
             setPhoneNum("")
@@ -71,11 +75,8 @@ const Cart = (props) => {
             setCustomerRequest("")
             setTotalPrice(0)
         }
-        const res = await deleteAllProductInCart();
-        if(res && res.data){
-          
-           fetchProducts()
-        }
+       
+       
        
        
     }
