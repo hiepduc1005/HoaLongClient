@@ -32,5 +32,14 @@ const deleteAllProductInCart = () => {
     return axios.post(`api/v1/cart/delete/all` , null , { withCredentials: true });
 }
 
+const updateProductQuantityInCart = (productId , quantity) => {
+    const requestData = {
+        productId : productId,
+        quantity : quantity
+    }
 
-export {getProductsInCart , addProductToCart , deleteProductInCart , getTotalPriceInCart , deleteAllProductInCart}
+    return axios.post('api/v1/cart/update_quantity', requestData , { withCredentials: true } )
+}
+
+
+export {getProductsInCart , addProductToCart , deleteProductInCart , getTotalPriceInCart , deleteAllProductInCart , updateProductQuantityInCart}

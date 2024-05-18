@@ -3,14 +3,16 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addProductToCart } from '../../services/CartService';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const CartModal = (props) => {
+    const navigate = useNavigate();
 
-    const {show , setShow , productCart} = props
+    const {show , setShow , productCart , setFlag , flag} = props
     
     const [totalPrice , setTotalPrice] = useState(1)
     const [amount , setAmount] = useState(1)
-
    
     const handleShow = () =>{
         setTotalPrice(amount * (+productCart.price))
@@ -20,6 +22,9 @@ const CartModal = (props) => {
        const res = await addProductToCart(productId,quantity);
        setAmount(1)
        setShow(false)
+       if(res && res.data){
+        setFlag(!flag)
+       }
     }
     
     useEffect(() => {
@@ -57,8 +62,7 @@ const CartModal = (props) => {
           </Button>
         </Modal.Footer>
        </Modal>
-
-        </>
+       </>
     )
 }
 

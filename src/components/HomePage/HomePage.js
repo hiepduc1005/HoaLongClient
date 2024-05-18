@@ -4,17 +4,24 @@ import nemChua from "../../assets/img/nemchua.jpeg"
 import { getAllProduct } from "../../services/ProductService"
 import { useEffect, useState } from "react"
 import CartModal from "../Cart/CartModal"
+import { useOutletContext } from 'react-router-dom';
 
 const HomePage = (props)=>{
+
+    const { check, setCheck} = useOutletContext();
 
     const [listProducts , setListProducts] = useState([]);
     const [show , setShow]  = useState(false)
     const [productCart , setProductCart] = useState({})
-
+    const [flag , setFlag] = useState(false)
     useEffect(() =>{
         fetchProducts()
        
     },[])
+
+    useEffect(() =>{
+        setCheck(!check)
+    },[flag])
 
     const fetchProducts = async () =>{
         let res = await getAllProduct();
@@ -79,6 +86,8 @@ const HomePage = (props)=>{
            show={show}
            setShow={setShow}
            productCart={productCart}
+           setFlag={setFlag}
+           flag={flag}
            ></CartModal>
         </div>
     )
