@@ -54,9 +54,10 @@ const Cart = (props) => {
 
     const handleDeleteProductInCart = async (product) => {
         let productId = product.id;
+        // handleDeleteProductInCartTemporary(productId)
         const newData = await deleteProductInCart(productId);
-        if (newData && newData.data) {
-            fetchProducts();
+        if(newData){
+            fetchProducts()
         }
         setCheck(!check);
     };
@@ -132,7 +133,9 @@ const Cart = (props) => {
 
     // const handleDeleteProductInCartTemporary = (productId) => {
     //     const newListProducts = listProduct.filter((item) => item.id != productId);
-    //     if(newListProducts.length >)
+    //     if(newListProducts.length > 1){
+    //         setListProduct(newListProducts)
+    //     }
     // }
 
     return (
