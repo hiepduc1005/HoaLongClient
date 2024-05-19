@@ -92,6 +92,7 @@ const Cart = (props) => {
         alert("Đơn hàng của bạn đã được gửi");
         const res = await deleteAllProductInCart();
         if (res && res.data) {
+            setCheck(!check)
             fetchProducts();
         }
         if (purchase && purchase.data) {
