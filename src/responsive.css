@@ -86,7 +86,7 @@
 
     .cart-container .information {
         display: flex !important;
-        flex-direction: column-reverse;
+        flex-direction: column;
         margin-top: 20px;
     }
 
