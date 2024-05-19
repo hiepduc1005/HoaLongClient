@@ -7,6 +7,9 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import _ from 'lodash'; // Import lodash for debounce
 
 const Cart = (props) => {
+
+    document.title = "Giỏ hàng"
+
     const navigate = useNavigate();
     const { check, setCheck } = useOutletContext();
     const [listProduct, setListProduct] = useState([]);

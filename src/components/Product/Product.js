@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const Product = (props) => {
 
     const navigate = useNavigate();
-
+    document.title = "Sản phẩm"
     const [listProducts , setListProduct] = useState([])
 
     const handleFormatCurrency = (amount) =>{
@@ -31,9 +31,9 @@ const Product = (props) => {
     return (
         <div className="product-container">
             <nav aria-label="breadcrumb" style={{ '--bs-breadcrumb-divider': "'>'" }} className='nav-breadcrumb'>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a onClick={() => navigate("/")}>Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a onClick={() => navigate("/")}>Trang chủ</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Sản phẩm</li>
                 </ol>
             </nav>
             <div className='product-title'>SẢN PHẨM</div>
@@ -41,7 +41,7 @@ const Product = (props) => {
             <div className='list-item'>
             {listProducts && listProducts.map((item , index) => {
                 return (
-                     <div className='product-item'>
+                     <div className='product-item' key={`productContainer${item.id}`}>
                    <a className='thumbnail'>
                        <img src={`data:image/png;base64,${item.imgData}`}></img>
                    </a>

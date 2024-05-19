@@ -10,6 +10,7 @@ const HomePage = (props)=>{
 
     const { check, setCheck} = useOutletContext();
 
+    document.title = "Trang chủ"
     const [listProducts , setListProducts] = useState([]);
     const [show , setShow]  = useState(false)
     const [productCart , setProductCart] = useState({})

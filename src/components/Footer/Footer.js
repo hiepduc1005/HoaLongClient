@@ -91,8 +91,8 @@ const Fotter = (props) => {
                     height={200} 
                     style={{border: "none", overflow: "hidden"}} 
                     scrolling="no" 
-                    frameborder={0} 
-                    allowfullscreen="true" 
+                    frameBorder={0} 
+                    allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                  </iframe>        
           </div>
@@ -121,9 +121,9 @@ const Fotter = (props) => {
                     width={300}
                     height={200}
                     style={{ border: 0 }}
-                    allowfullscreen=""
+                    allowFullScreen={true}
                     loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                    referrerPolicy="no-referrer-when-downgrade">
                 </iframe>    
                 </div>
             </div>
